@@ -1,8 +1,0 @@
-countSupportingReads.py
-
-This program counts the number of supporting reads for a given BAM file and splicing annotations.
-
-Inputs include:
-Paths to splicing annotations (Skipped Exon, Mutually Exclusive Exon, Alternative 5' Splice Site, Alternative 3' Splice Site, Retained Intron)
-Read Length (can be called from Samtools view)
-Junction Length (2 * (read_length - anchor_length))
