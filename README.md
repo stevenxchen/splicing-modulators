@@ -12,6 +12,4 @@ The strategy to evaluate modulator candidates integrates four categories of inpu
 
 For an optional Mendelian randomization-based approach, matched genotype data are required.
 
-The expression levels of the RBP and the PSI values of the target events are calculated from RNAseq data directly. The RBP-binding sites are derived from CLIP-seq data in the public domain. Splicing annotations are downloaded from GENCODE. The expression levels of the modulator candidates are imputed from genotype of the flanking regions.   
-
 Please cite:
