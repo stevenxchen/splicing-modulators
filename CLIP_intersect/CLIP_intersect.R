@@ -1,4 +1,5 @@
 # Intersect CLIPseq RBP-binding data with splicing annotations ####
+# Public domain CLIP data may be found from ENCODE https://www.encodeproject.org #
 
 rm(list=ls())
 setwd("/Data")
