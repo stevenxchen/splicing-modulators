@@ -1,0 +1,25 @@
+#!/bin/bash
+#####  Constructed by HPC everywhere #####
+#PBS -M sxchen@iu.edu
+#PBS -q debug
+#PBS -l nodes=1:ppn=22,walltime=0:01:00:00
+#PBS -l vmem=128gb
+#PBS -m abe
+#PBS -N remove_missing
+#PBS -j oe
+
+######  Module commands #####
+
+
+######  Job commands go below this line #####
+date
+
+cd /N/dc2/scratch/sxchen/CMC_impute
+
+for i in {1..22}; do
+  (grep -v "./.:.:.:." chr$i.dose.vcf > chr$i.rm.dose
+	gzip -c chr$i.rm.dose > chr$i.dose.gz) &
+done
+wait
+
+date

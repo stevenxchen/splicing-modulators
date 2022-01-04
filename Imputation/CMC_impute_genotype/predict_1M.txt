@@ -1,0 +1,32 @@
+#!/bin/bash
+#####  Constructed by HPC everywhere #####
+#PBS -M sxchen@iu.edu
+#PBS -l nodes=1:ppn=1,walltime=0:7:59:00
+#PBS -l vmem=32gb
+#PBS -m abe
+#PBS -N predict_1M
+#PBS -j oe
+
+######  Module commands #####
+module unload python
+module load anaconda/python3.7/2019.03
+
+
+
+######  Job commands go below this line #####
+source activate metaxcan
+
+cd /N/dc2/scratch/sxchen/CMC_impute/results
+
+DATA=/N/dc2/scratch/sxchen/CMC_impute
+
+python /N/slate/sxchen/MetaXcan/software/Predict.py \
+--model_db_path $DATA/psychencode.db \
+--vcf_genotypes $DATA/1M/chr*.filter.vcf.gz \
+--vcf_mode imputed \
+--on_the_fly_mapping METADATA "{}_{}_{}_{}_b37" \
+--variant_mapping $DATA/GTEx_Analysis_2017-06-05_v8_WholeGenomeSeq_838Indiv_Analysis_Freeze.lookup_table.txt.gz variant_id_b37 rs_id_dbSNP151_GRCh38p7 \
+--prediction_output $DATA/results/CMC_predict_1M.txt \
+--prediction_summary_output $DATA/results/CMC_predict_1M_summary.txt \
+--verbosity 9 \
+--throw

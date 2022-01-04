@@ -7,9 +7,9 @@ library(dplyr)
 # Load Discrete Modulator Counts
 load(file = "Modulator.discrete.Rdata")
 
-# Load SRSF1 RBP Discrete Counts
-load(file = "SRSF1.discrete.Rdata")
-rbp_discrete <- as.integer(SRSF1.discrete)
+# Load RBP Discrete Counts
+load(file = "RBP.discrete.Rdata")
+rbp_discrete <- as.integer(RBP.discrete)
 
 # Define error function
 erfc <- function(x) 2 * pnorm(x * sqrt(2), lower = FALSE)
@@ -18,7 +18,7 @@ erfc <- function(x) 2 * pnorm(x * sqrt(2), lower = FALSE)
 splice.type <- "SE"
 
 ### Model ####
-load(file = paste0("SRSF1.", splice.type, ".PSI.discrete.Rdata"))
+load(file = paste0("RBP.", splice.type, ".PSI.discrete.Rdata"))
 
 # Run code on all modulators and splice events ####
 output <- data.frame(event=character(), GeneID=character(), geneSymbol=character(), 
@@ -80,7 +80,7 @@ for(i in 1:nrow(Modulator.discrete)){
     output[out_row,1] <- row.names(psi)[j]
     output[out_row,2] <- gene_id$name[j]
     output[out_row,3] <- gene_id$geneSymbol[j]
-    output[out_row,4] <- "SRSF1"
+    output[out_row,4] <- "RBP"
     output[out_row,5] <- row.names(Modulator.discrete)[i]
     output[out_row,6] <- num_supporting_samples[j]
     output[out_row,7] <- gamma
@@ -100,4 +100,4 @@ for(i in 1:nrow(Modulator.discrete)){
   }
 }
 
-save(output, file = paste0("Output/SRSF1.Output.", splice.type, ".Rdata"))
+save(output, file = paste0("Output/RBP.Output.", splice.type, ".Rdata"))
